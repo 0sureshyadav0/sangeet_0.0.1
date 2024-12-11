@@ -18,14 +18,19 @@ Sangeet is a modern and elegant Flutter-based music app that allows users to exp
 
 ### Preview
 
-<div style="display:inline-block;">
-<img src="./assets/images/img1.jpg" height = "500px" width="300px">
-<img src="./assets/images/img2.jpg" height = "500px" width="300px">
-<img src="./assets/images/img3.jpg" height = "500px" width="300px">
-
-[![Video Thumbnail](./assets/images/joker.jpeg)](./assets/videos/video.mp4)
-
+<center>
+<div style="display:flex;gap:20px;">
+<img src="./assets/images/img1.jpg" height = "720px" width="300px">
+<img src="./assets/images/img2.jpg" height = "720px" width="300px">
+<img src="./assets/images/img3.jpg" height = "720px" width="300px">
 </div>
+</center>
+
+---
+
+## Video Preview
+
+[![Video Thumbnail](https://stellarcontent.com/blog/wp-content/uploads/sites/16/video-take.png)](./assets/videos/video.mp4)
 
 ---
 
