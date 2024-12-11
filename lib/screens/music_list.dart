@@ -1,7 +1,5 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
-
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -59,8 +57,6 @@ class _MusicListScreenState extends State<MusicListScreen> {
     }
   }
 
-  bool isAssetPlaying = false;
-  final AudioPlayer _audioPlayer = AudioPlayer();
   @override
   void dispose() {
     super.dispose();
@@ -131,71 +127,64 @@ class _MusicListScreenState extends State<MusicListScreen> {
                         color: Colors.white,
                         fontSize: 20.0,
                       )),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8.0),
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(15),
-                            border: Border.all(
-                              color: Colors.white.withOpacity(0.3),
-                              width: 1.5,
+                  Consumer<MusicProvider>(builder: (BuildContext context,
+                      MusicProvider provider, Widget? child) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            decoration: BoxDecoration(
+                              color: provider.isAssetPlaying
+                                  ? const Color.fromARGB(255, 2, 190, 8)
+                                  : Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: Colors.white.withOpacity(0.3),
+                                width: 1.5,
+                              ),
                             ),
+                            child: ListTile(
+                                onTap: () {
+                                  provider.toggleAssetPlaying();
+                                },
+                                leading: provider.isAssetPlaying
+                                    ? TweenAnimationBuilder(
+                                        tween: Tween<double>(
+                                            begin: 0,
+                                            end: int.parse(240024.toString())
+                                                    .toDouble() /
+                                                1000),
+                                        duration: Duration(
+                                            milliseconds:
+                                                int.parse(240024.toString())),
+                                        builder:
+                                            (context, double value, child) {
+                                          return Transform.rotate(
+                                            angle: value,
+                                            child: const Icon(
+                                              Icons.music_note,
+                                              size: 40,
+                                              color: Colors.white,
+                                            ),
+                                          );
+                                        },
+                                      )
+                                    : const Icon(Icons.music_note,
+                                        size: 40, color: Colors.white),
+                                title: const Text("Suresh's life journey",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20.0,
+                                    ))),
                           ),
-                          child: ListTile(
-                              onTap: () async {
-                                await _audioPlayer.setSource(AssetSource(
-                                    './music/सुरेशको जीवनको कथा.mp3'));
-
-                                if (isAssetPlaying) {
-                                  await _audioPlayer.pause();
-                                  setState(() {
-                                    isAssetPlaying = false;
-                                  });
-                                } else {
-                                  await _audioPlayer.resume();
-                                  setState(() {
-                                    isAssetPlaying = true;
-                                  });
-                                }
-                              },
-                              leading: isAssetPlaying
-                                  ? TweenAnimationBuilder(
-                                      tween: Tween<double>(
-                                          begin: 0,
-                                          end: int.parse(240024.toString())
-                                                  .toDouble() /
-                                              1000),
-                                      duration: Duration(
-                                          milliseconds:
-                                              int.parse(240024.toString())),
-                                      builder: (context, double value, child) {
-                                        return Transform.rotate(
-                                          angle: value,
-                                          child: const Icon(
-                                            Icons.music_note,
-                                            size: 40,
-                                            color: Colors.white,
-                                          ),
-                                        );
-                                      },
-                                    )
-                                  : const Icon(Icons.music_note,
-                                      size: 40, color: Colors.white),
-                              title: const Text("Suresh's life journey",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20.0,
-                                  ))),
                         ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                   const SizedBox(
                     height: 1,
                   ),
@@ -307,6 +296,8 @@ class _MusicListScreenState extends State<MusicListScreen> {
               ),
               trailing: const Icon(Icons.more_vert, color: Colors.white),
               onTap: () {
+                Provider.of<MusicProvider>(context, listen: false)
+                    .stopAssetPlaying();
                 setState(() {
                   currentlyPlayingIndex = index;
                 });

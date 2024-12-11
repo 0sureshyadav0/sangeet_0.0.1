@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -102,6 +103,31 @@ class MusicProvider extends ChangeNotifier {
       resumeMusic();
       _isPlaying = true;
     }
+    notifyListeners();
+  }
+
+  bool _isAssetPlaying = false;
+  bool get isAssetPlaying => _isAssetPlaying;
+  final AudioPlayer _audioPlayer = AudioPlayer();
+  void toggleAssetPlaying() async {
+    await _audioPlayer.setSource(
+      AssetSource('./music/सुरेशको जीवनको कथा.mp3'),
+    );
+    if (_isAssetPlaying) {
+      _isAssetPlaying = false;
+      await _audioPlayer.pause();
+    } else {
+      stopMusic();
+      setIsPlaying();
+      _isAssetPlaying = true;
+      await _audioPlayer.resume();
+    }
+    notifyListeners();
+  }
+
+  void stopAssetPlaying() {
+    _audioPlayer.pause();
+    _isAssetPlaying = false;
     notifyListeners();
   }
 }
