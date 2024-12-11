@@ -118,7 +118,7 @@ class MusicProvider extends ChangeNotifier {
       await _audioPlayer.pause();
     } else {
       stopMusic();
-      setIsPlaying();
+      _isPlaying = false;
       _isAssetPlaying = true;
       await _audioPlayer.resume();
     }
