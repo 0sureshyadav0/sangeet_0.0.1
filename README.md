@@ -1,4 +1,4 @@
-# Sangeet 🎵
+# 🎵Sangeet
 
 Sangeet is a modern and elegant Flutter-based music app that allows users to explore and enjoy their favorite music files stored locally on their devices. With its sleek user interface and robust audio playback features, Sangeet enhances your music-listening experience.
 
@@ -16,7 +16,14 @@ Sangeet is a modern and elegant Flutter-based music app that allows users to exp
 
 ## 📱 Screenshots
 
-_(Add screenshots of your app here to showcase the design and features.)_
+### Preview
+
+<div style="display:inline-block;">
+<img src="./assets/images/img1.jpg" height = "500px" width="300px">
+<img src="./assets/images/img2.jpg" height = "500px" width="300px">
+<img src="./assets/images/img3.jpg" height = "500px" width="300px">
+<video src="./assets/videos/video.mp4" height="500px" width="300px">
+</div>
 
 ---
 
@@ -103,7 +110,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request.
 
 ## 📞 Support
 
-For any issues or feedback, contact [Suresh Yadav](mailto:youremail@example.com).
+For any issues or feedback, contact [Suresh Yadav](mailto:sureshyadav.info.np@gmail.com).
 
 ---
 
