@@ -70,7 +70,9 @@ class _MusicListScreenState extends State<MusicListScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async {
-        setState(() {});
+        setState(() {
+          getAudioFiles();
+        });
       },
       child: Scaffold(
         backgroundColor: appBarColor,
@@ -255,7 +257,11 @@ class _MusicListScreenState extends State<MusicListScreen> {
           filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
+              color:
+                  Provider.of<MusicProvider>(context, listen: true).isPlaying &&
+                          currentlyPlayingIndex == index
+                      ? const Color.fromARGB(255, 2, 190, 8)
+                      : Colors.white.withOpacity(0.2),
               borderRadius: BorderRadius.circular(15),
               border: Border.all(
                 color: Colors.white.withOpacity(0.3),

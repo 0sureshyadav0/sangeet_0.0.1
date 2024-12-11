@@ -228,7 +228,7 @@ class _MusicAppHomeState extends State<MusicAppHome>
                               end:
                                   int.parse(widget.duration).toDouble() / 1000),
                           duration: Duration(
-                              milliseconds: int.parse(widget.duration)),
+                              milliseconds: int.parse(widget.duration * 2)),
                           builder: (context, double value, child) {
                             return Transform.rotate(
                               angle: value,
