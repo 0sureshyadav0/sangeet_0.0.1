@@ -93,7 +93,7 @@ sangeet_0.0.1/
 
 ## 📄 License
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/0sureshyadav0/sangeet_0.0.1/blob/master/LICENSE.txt?raw=true) file for details.
 
 ---
 
