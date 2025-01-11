@@ -99,7 +99,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## 🧑‍💻 Developer
 
-- **Suresh Yadav**
+- **🧔Suresh Yadav**
 - 🌐 [sureshyadav.info.np](http://sureshyadav.info.np)
 
 ---
